@@ -2,7 +2,7 @@ clc;clear
 close all
 
 
-num_pts=5000;
+num_pts=1000;
 num_policy=20;
 num_F=20;
 a=round(rand(num_pts,1)*num_policy^4*num_F^2);

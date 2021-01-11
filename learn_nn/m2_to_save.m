@@ -23,5 +23,5 @@ end
 
 % save('train_data','train_data')
 % save('train_targets','train_targets')
-save('train_both_smooth','data','targets')
+save('test_both_smooth','data','targets')
 
