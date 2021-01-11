@@ -18,7 +18,7 @@ for i =1:num_pts
     
 end
 
-save('train_data','train_data')
-save('train_targets','train_targets')
-save('train_both','train_data','train_targets')
+% save('train_data','train_data')
+% save('train_targets','train_targets')
+save('train_both','train_data','train_targets2')
 
