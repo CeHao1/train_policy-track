@@ -6,6 +6,7 @@ num_pts=1000;
 num_policy=20;
 num_F=20;
 a=round(rand(num_pts,1)*num_policy^4*num_F^2);
+% all_nums=num_policy^4*num_F^2;
 
 
 sz=[num_F,num_F,num_policy,num_policy,num_policy,num_policy];
@@ -13,8 +14,8 @@ sz=[num_F,num_F,num_policy,num_policy,num_policy,num_policy];
 
 
 policy_base=linspace(-1,1,num_policy);
-F_base=linspace(0,1,num_F);
+F_base=linspace(1e-2,1-1e-2,num_F);
 
-policies=policy_base(p);
-Fs=F_base(f);
+policies=policy_base(p)';
+Fs=F_base(f)';
 

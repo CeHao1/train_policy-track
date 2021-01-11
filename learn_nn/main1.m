@@ -7,20 +7,17 @@ r=cell(1);
 
 tic
 parfor i=1:num_pts
-    policy=policies(:,i);
-    F=Fs(:,i);
+    policy=policies(i,:);
+    F=Fs(i,:);
     [track,path]=construct_normal_path(policy,F);
     
     r{i,1}=path;
-
-    if rem(i,10)==0
-        i
-%         toc
-    end
 end
 toc
 delete(p)
 
+
+save('result1')
 %%
 
 
