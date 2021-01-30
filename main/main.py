@@ -28,8 +28,8 @@ def main():
         else:
             psi_init, pos_init = 0, [0,0]
             
-        track[i] = build_real_track(W = track_param['W'][i], kap_max =track_param['kap_max'][i], 
-                                    F =track_param['F'][i] ,Len =track_param['Len'][i],
+        track[i] = build_real_track(W = track_param['W'][i], kap_max = track_param['kap_max'][i], 
+                                    F = track_param['F'][i] ,Len = track_param['Len'][i],
                                     psi_init = psi_init, pos_init = pos_init)
 
     # plt.figure(figsize=(15,10))

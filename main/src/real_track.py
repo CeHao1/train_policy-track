@@ -19,9 +19,9 @@ class build_real_track:
         PY=[0,kap_max,0]
         kap_intp = CubicSpline(PX,PY,bc_type=((1,0),(1,0)))
         xx=np.linspace(0,1,100)
-        yy=kap_intp(xx)
+        kap0=kap_intp(xx)
         
-        psi=integrate.cumtrapz(yy,xx*Len, initial=0)
+        psi=integrate.cumtrapz(kap0,xx*Len, initial=0)
     
         X = integrate.cumtrapz(np.cos(psi), xx*Len, initial=0)
         Y = integrate.cumtrapz(np.sin(psi), xx*Len, initial=0)
@@ -40,7 +40,7 @@ class build_real_track:
         Right_X = np.hstack((X_negative[:-1],X_Right))
         Right_Y = np.hstack((Y_negative[:-1]-W,Y_Right))
         psi = np.hstack((Y_negative[:-1],psi))
-        
+        kap = np.hstack((Y_negative[:-1],kap0))
         
         self.init_Center = [Center_X[0], Center_Y[0]]
         
@@ -48,7 +48,7 @@ class build_real_track:
         [self.Left_X , self.Left_Y] = self.rotate(psi_init, pos_init, Left_X, Left_Y)
         [self.Right_X, self.Right_Y] = self.rotate(psi_init, pos_init, Right_X, Right_Y)
         self.psi = np.unwrap(psi + psi_init)
-        
+        self.kap = kap
         
     def bias(self,X,Y,psi,W):
         X2 = X - W * np.sin(psi)
