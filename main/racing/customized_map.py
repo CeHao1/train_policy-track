@@ -1,6 +1,9 @@
 
 import numpy as np
+from scipy.interpolate import CubicSpline
 import matplotlib.pyplot as plt
+
+
 import sys
 sys.path.append('..')
 
@@ -18,7 +21,6 @@ Map structure:
     7:  Right_edge  distance to right edge
     
 """
-
 
 class customized_map:
 
@@ -40,6 +42,7 @@ class customized_map:
         self.Right_edge = np.array([0])
 
         self.get_track()
+        self.intp()
 
     def get_track(self):
         track_param = self.track_param
@@ -62,10 +65,25 @@ class customized_map:
             self.psi = np.append(self.psi[:-1], track[i].psi)
             self.kap = np.append(self.kap[:-1], track[i].kap)
             self.Left_edge = np.append(self.Left_edge[:-1], np.ones(track[i].S.shape[0]) * track[i].W)
-            self.Right_edge = np.append(self.Left_edge[:-1], -np.ones(track[i].S.shape[0]) * track[i].W)
-
+            self.Right_edge = np.append(self.Right_edge[:-1], -np.ones(track[i].S.shape[0]) * track[i].W)
             self.track = track
         
+    def intp(self):
+        self.X_intp = CubicSpline(self.s, self.X)
+        self.Y_intp =CubicSpline(self.s, self.Y)
+        self.psi_intp = CubicSpline(self.s, self.psi)
+        self.kap_intp = CubicSpline(self.s, self.kap)
+        self.Left_edge_intp = CubicSpline(self.s, self.Left_edge)
+        self.Right_edge_intp = CubicSpline(self.s, self.Right_edge)
+        
+    def get_kap(self,s):
+        return self.kap_intp(s)
+
+    def bias(self,X,Y,psi,W):
+        X2 = X - W * np.sin(psi)
+        Y2 = Y + W * np.cos(psi)
+        return X2,Y2
+
     def plot(self):
         track = self.track
         track_param = self.track_param
