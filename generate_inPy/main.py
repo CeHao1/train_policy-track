@@ -25,7 +25,7 @@ if __name__ == '__main__':
         
         data = []
         
-        for ind_P in tqdm(range(P_start,P_end)):
+        for ind_P in (range(P_start,P_end)):
             feature.fetch_feature_P(ind_P)
             path=build_path(feature.F,feature.P,track)
             path.generate()
@@ -33,5 +33,6 @@ if __name__ == '__main__':
             data.append({'F':feature.F,'P':feature.P,'path':path.Y})
             
         name='F_{}_P_{}_to_{}.npy'.format(ind_F,P_start,P_end)
-        path='/home/work/sv_data/'
+        #path='/home/work/sv_data/'
+        path = 'D:/sv_data/'
         np.save(path+name,data)
