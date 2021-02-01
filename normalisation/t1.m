@@ -1,2 +1,0 @@
-addpath('./funs');
-addpath('./others');
