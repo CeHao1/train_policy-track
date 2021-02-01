@@ -5,6 +5,8 @@ from scipy.interpolate import CubicSpline
 import scipy.integrate as integrate
 from scipy.sparse import csr_matrix
 
+import matplotlib.pyplot as plt
+
 class build_track:
     def __init__(self,F):
         num=200
