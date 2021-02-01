@@ -2,10 +2,12 @@ import matplotlib.pyplot as plt
 import numpy as np
 from tqdm import tqdm
 
+from add_path import add_path
+add_path()
 
-from src.real_track import build_real_track, build_real_path
-from src.std_track import build_track, build_path
-from src.search import graph_search
+from src.track.real_track import build_real_track, build_real_path
+from src.track.std_track import build_track, build_path
+from src.plan.graph_search import graph_search
 
 
 def main():
