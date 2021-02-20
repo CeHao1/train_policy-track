@@ -13,13 +13,22 @@ from src.plan.graph_search import graph_search
 def main():
 
     # set parameters of real track
+    # track_param= {
+    #     'num' : 4,
+    #     'W' : np.array([3.5,3.5,3.5,3.5]),
+    #     'kap_max' : np.array([0.03,-0.045,-0.02,-0.015]),
+    #     'F' : np.array([[0.7,0.3],[0.2,0.4],[0.2,0.6],[0.3,0.7]]),
+    #     'Len' : np.array([80,60,70,80])
+    # }
+
     track_param= {
-        'num' : 4,
-        'W' : np.array([3.5,3.5,3.5,3.5]),
-        'kap_max' : np.array([0.01,-0.015,0.02,0.015]),
-        'F' : np.array([[0.7,0.3],[0.2,0.4],[0.2,0.6],[0.3,0.7]]),
-        'Len' : np.array([80,60,70,80])
+        'num' : 5,
+        'W' : np.array([3.5,3.5,3.5,3.5,3.5]),
+        'kap_max' : np.array([0.03,0.045,0.02,0.03,0.025]),
+        'F' : np.array([[0.7,0.3],[0.24,0.4],[0.2,0.6],[0.27,0.7],[0.1,0.2]]),
+        'Len' : np.array([80,60,70,80,70])
     }
+
 
     # formulate real track
     track = {}
@@ -48,6 +57,7 @@ def main():
 
 
     gs = graph_search(num_sample=5, iteration=5)
+    # gs = graph_search(num_sample=2, iteration=1)
 
     lt = np.empty(track_param['num'])
 
@@ -64,6 +74,7 @@ def main():
         
         lt[i] = gs.time
         
+    plt.axis('equal')
     plt.savefig('images/track_planned.svg',format='svg')
 
 if __name__ == '__main__':

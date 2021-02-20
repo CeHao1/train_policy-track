@@ -200,4 +200,5 @@ class build_real_path:
         plt.plot(self.T.Left_X,self.T.Left_Y,'b--')
         plt.plot(self.T.Right_X,self.T.Right_Y,'r--')
         
-        plt.plot(self.X,self.Y,'k')
+        plt.plot(self.X,self.Y,'k',linewidth=3.0)
+        print('yes')
